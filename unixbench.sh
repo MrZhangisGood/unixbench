@@ -36,6 +36,7 @@ else
     fi
 fi
 unzip UnixBench.zip && rm -f UnixBench.zip
+cd UnixBench/
 
 #Run unixbench
 make
