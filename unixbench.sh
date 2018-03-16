@@ -39,7 +39,7 @@ unzip UnixBench.zip && rm -f UnixBench.zip
 cd UnixBench/
 
 #Run unixbench
-chmod +x Run
+chmod +x Run pgms/gfx-x11 pgms/multi.sh pgms/tst.sh
 make
 ./Run
 
