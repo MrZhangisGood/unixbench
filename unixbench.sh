@@ -39,11 +39,15 @@ unzip UnixBench.zip && rm -f UnixBench.zip
 cd UnixBench/
 
 #Run unixbench
+chmod +x Run
 make
 ./Run
 
 echo
 echo
-echo "======= Script description and score comparison completed! ======= "
+echo "# ========================================================= #"
+echo "# Script description and score comparison completed!  "
+echo "# For more information, please go to https://unixbench.org "
+echo "# ========================================================= #"
 echo
 echo
