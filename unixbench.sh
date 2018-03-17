@@ -1,9 +1,12 @@
 #! /bin/bash
 #==============================================================#
 #   Description:  Unixbench script                             #
-#   Author: root                          #
-#   Intro:  https://unixbench.org                      #
+#   Author: root                                               #
+#   Intro:  https://unixbench.org                              #
+#   Reference:  https://teddysun.com/245.html                  #
 #==============================================================#
+
+
 cur_dir=/opt/unixbench
 
 # Check System
@@ -15,10 +18,10 @@ cur_dir=/opt/unixbench
 
 # Install necessary libaries
 if [ "$os" == 'centos' ]; then
-    yum -y install make automake gcc autoconf gcc-c++ time perl-Time-HiRes zip unzip
+    yum -y install make automake gcc autoconf gcc-c++ time perl-Time-HiRes
 else
     apt-get -y update
-    apt-get -y install make automake gcc autoconf time perl zip unzip
+    apt-get -y install make automake gcc autoconf time perl
 fi
 
 # Create new soft download dir
@@ -26,20 +29,19 @@ mkdir -p ${cur_dir}
 cd ${cur_dir}
 
 # Download UnixBench5.1.3
-if [ -s UnixBench.zip ]; then
-    echo "UnixBench.zip [found]"
+if [ -s UnixBench5.1.3.tgz ]; then
+    echo "UnixBench5.1.3.tgz [found]"
 else
-    echo "UnixBench.zip not found!!!download now..."
-    if ! wget -c --no-check-certificate https://raw.githubusercontent.com/zq/unixbench/master/UnixBench/UnixBench.zip; then
-        echo "Failed to download UnixBench.zip, please download it to ${cur_dir} directory manually and try again."
+    echo "UnixBench5.1.3.tgz not found!!!download now..."
+    if ! wget -c --no-check-certificate https://raw.githubusercontent.com/zq/unixbench/master/UnixBench/UnixBench5.1.3.tgz; then
+        echo "Failed to download UnixBench5.1.3.tgz, please download it to ${cur_dir} directory manually and try again."
         exit 1
     fi
 fi
-unzip UnixBench.zip && rm -f UnixBench.zip
+tar -zxvf UnixBench5.1.3.tgz && rm -f UnixBench5.1.3.tgz
 cd UnixBench/
 
 #Run unixbench
-chmod +x Run pgms/gfx-x11 pgms/multi.sh pgms/tst.sh
 make
 ./Run
 
